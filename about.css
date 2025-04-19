@@ -1,0 +1,325 @@
+/* CSS for GLCC About Page */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradientBG 15s ease infinite; /* Background color */
+    color: #333;
+    padding: 20px;
+    background-size: 4000px 4000px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Header Section */
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
+.header-logo a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo img {
+    height: 40px;
+}
+
+.header-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.header-nav .nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.header-nav .nav-list li a:hover {
+    color: #ffcc00;
+}
+
+.header-social a img {
+    height: 24px;
+    margin-left: 10px;
+    transition: opacity 0.3s;
+}
+
+.header-social a img:hover {
+    opacity: 0.8;
+}
+
+/* Main Content */
+main {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 10px;
+}
+
+/* General Section Styling */
+.core-beliefs {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #e6e6e6, #d4d4d4);
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.core-beliefs h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Button List */
+.core-beliefs ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Belief Buttons */
+.core-beliefs button {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+}
+
+.core-beliefs button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Button Text Styling */
+.core-beliefs button strong {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .core-beliefs h2 {
+        font-size: 1.8rem;
+    }
+
+    .core-beliefs button {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+}
+
+
+/* Section Styling */
+section {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+ul {
+    list-style-type: disc;
+    margin: 10px 20px;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* Section Styling */
+.what-we-offer-ses {
+    display: flex;
+    gap:10px;
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #e6e6e6, #d4d4d4);
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.what-we-offer-ses h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    padding-right: 20px;
+}
+
+/* Event Container */
+.event {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    text-align: left;
+}
+
+/* Event Titles */
+.event h2 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+/* Event Details */
+.event p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* View Details Button */
+.event-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.event-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Button Link */
+.event-button a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Event Details Hidden by Default */
+.details {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-left: 4px solid #007bff;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .what-we-offer-ses h2 {
+        font-size: 1.8rem;
+    }
+
+    .event {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .event h2 {
+        font-size: 1.3rem;
+    }
+
+    .event p {
+        font-size: 0.95rem;
+    }
+
+    .event-button {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+}
+
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    padding: 15px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.footer-nav .nav-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-nav .nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.footer-nav .nav-list li a:hover {
+    color: #ffcc00;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}

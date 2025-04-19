@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCC </title>
+    <style>
+/* CSS Reset */
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+    all: unset;
+    display: revert;
+  }
+  
+  /* Preferred box-sizing value */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+
+  /*
+    Remove list styles (bullets/numbers)
+    in case you use it with normalize.css
+  */
+  ol, ul {
+    list-style: none;
+  }
+  
+  /* For images to not be able to exceed their container */
+  img {
+    max-width: 100%;
+  }
+  
+  /* Removes spacing between cells in tables */
+  table {
+    border-collapse: collapse;
+  }
+  
+  /* Revert the 'white-space' property for textarea elements on Safari */
+  textarea {
+    white-space: revert;
+  }
+        /* ================= GENERAL STYLES ================== */
+:root {
+    --primary-color: #f0f8ff; /* Light Blue */
+    --secondary-color: #00ced1; /* Turquoise */
+    --accent-color: #ff4500; /* Orange Red */
+    --text-color: #2f4f4f; /* Dark Slate Gray */
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper Shadow */
+    --gradient-bg: linear-gradient(135deg, #00ced1, #ff4500);
+    --hover-gradient: linear-gradient(135deg, #ff4500, #00ced1);
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: var(--gradient-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+.header-logo img {
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.header-logo img:hover {
+    transform: scale(1.1);
+}
+
+.header-logo span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background: var(--hover-gradient);
+    transform: scale(1.1);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--gradient-bg);
+    color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    box-shadow: var(--shadow);
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    background: var(--hover-gradient);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow);
+}
+
+.hero button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Daily Section */
+.daily {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    gap: 50px;
+    background: var(--primary-color);
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+}
+
+.daily-word, .daily-verse {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.daily-word:hover, .daily-verse:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Media Section */
+.media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px;
+    background: var(--gradient-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.media-videos, .media-audios {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.media-videos:hover, .media-audios:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Menu */
+    .header-nav .nav-list {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .header-nav .nav-list button {
+        background: linear-gradient(135deg, #23a6d5, #1477b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    }
+
+    .header-nav .nav-list button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);
+    }
+
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .header-nav ul {
+        display: none;
+        flex-direction: column;
+    }
+
+    .header-nav.active ul {
+        display: flex;
+    }
+
+    .menu-toggle {
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+    }
+}
+
+/* ================= MAIN CONTENT STYLES =========== */ 
+.main-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    overflow: hidden;
+}
+/* ================= GLOBAL STYLES ================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* ================= SPLASH SECTION ================= */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradientBG 15s ease infinite;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.splash-content {
+    text-align: center;
+}
+
+.splash-content img {
+    max-width: 150px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.splash-content h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.splash-content p {
+    font-size: 1.2rem;
+}
+
+.loading-spinner {
+    border: 4px solid #ccc;
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ================= HERO SECTION ================== */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgb(0, 187, 255), rgba(0, 0, 0, 0.7));
+    color: var(--text-color);
+    margin: 20px 0;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.hero button {
+    background: linear-gradient(135deg, #23a6d5, #1477b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.hero button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);
+}
+
+/* ================= DAILY VERSE =================== */
+.daily {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    gap: 50px;
+}
+
+.daily-word,
+.daily-verse {
+    text-align: center;
+    padding: 20px;
+    background: whitesmoke;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-style: italic;
+}
+
+.daily-word h2,
+.daily-word p {
+    text-decoration: underline;
+}
+
+/* ================= MEDIA SECTION ================= */
+.media {
+    display: flex;
+    padding: 20px;
+    background: #f4f4f4;
+    gap: 20px;
+}
+
+/* Video Section */
+.media-videos {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.media-videos h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+.video-grid div {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.video-grid iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 6px;
+}
+
+.video-grid p {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* ================== AUDIO PLAYER ================== */
+.media-audios {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+#audio-player {
+    width: 100%;
+    outline: none;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.audio-controls button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background 0.3s ease;
+}
+
+.audio-controls button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);}
+
+#playlist li {
+    padding: 10px;
+    border-radius: 4px;
+    margin: 5px 0;
+    cursor: pointer;
+    background: #e8e8e8;
+    transition: background 0.3s ease;
+}
+
+#playlist li:hover {
+    background: #d4d4d4;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .audio-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+
+/* Main Container */
+.Image-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(to right, #f8f8f8, #e6e6e6);
+    padding: 30px;
+    max-height: 1600px;
+    margin-top: 120px;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 1600px;
+}
+
+/* Slide Image */
+.slides img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 1200px;
+    display: none;
+    border-radius: 12px;
+}
+
+/* Event Slideshow Section */
+.event-main {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, #f8f8f8, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.event-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-slides img {
+    width: 100%;
+    display: none;
+    border-radius: 12px;
+    transition: opacity 1s ease-in-out;
+}
+
+.event-slides img.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Active Slide */
+.slides img.active {
+    display: block;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+/* Slideshow Controls */
+.controls {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.controls button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 26px;
+    border-radius: 50%;
+    transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.controls button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);
+}
+
+/* Auto-hide Controls */
+.slideshow-container:hover .controls {
+    opacity: 1;
+}
+
+/* Thumbnail Container */
+.thumbnail-container {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thumbnails */
+.thumbnails {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+/* Hide Scrollbar */
+.thumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnails .thumb {
+    width: 70px;
+    height: 55px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: transform 0.3s, border 0.3s;
+    border: 2px solid transparent;
+}
+
+.thumbnails .thumb:hover,
+.thumbnails .thumb:focus {
+    border: 2px solid #23d5ab;
+    transform: scale(1.1);
+}
+
+.thumbnails .thumb.selected {
+    border: 2px solid #007bff;
+    transform: scale(1.1);
+}
+
+
+/* Thumbnail Controls */
+.thumbnail-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+.thumbnail-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.thumbnail-controls button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: zoomIn 0.4s ease;
+}
+
+/* Lightbox Zoom Animation */
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0.5; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Lightbox Close Button */
+#close-lightbox {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#close-lightbox:hover {
+    color: red;
+}
+
+/* Slide Animation */
+@keyframes slideIn {
+    from { transform: translateX(50px); opacity: 0.5; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Apply Animation to Active Slide */
+.slides img.active {
+    display: block;
+    animation: slideIn 0.8s ease-in-out;
+}
+
+/* Auto-Play Pause on Hover */
+.slideshow-container:hover {
+    animation-play-state: paused;
+}
+
+/* Touch & Swipe Navigation */
+@media screen and (max-width: 768px) {
+    .thumbnail-container {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+    }
+
+    .thumbnails .thumb {
+        width: 60px;
+        height: 50px;
+    }
+}
+
+/* Keyboard Navigation */
+.lightbox:focus {
+    outline: none;
+}
+
+
+
+/* ====== CONTAINER STYLING ====== */
+.find {
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color:white;
+}
+
+/* ====== LOCATION SECTION ====== */
+.maps {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.maps h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.maps iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    border-radius: 6px;
+}
+
+/* ====== CONTACT INFO SECTION ====== */
+.contact-section {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.contact-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contact-item p a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-item p a:hover {
+    color: #0056b3;
+}
+
+/* Form Section */
+.form-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.form-container h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+        width: 80%;
+        padding: 10px;
+        font-size: 18px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+}
+
+button {
+    background: linear-gradient(135deg, #23a6d5, #1477b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Slideshow Section */
+.slideshow-section {
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.slideshow-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+
+.slides-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    background: #007bff;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px;
+}
+
+.slide h3 {
+    margin-bottom: 5px;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+/* ================= FOOTER STYLES ================== */
+
+
+/* Footer Navigation Styling */
+.footer-nav {
+    background: #2e758b;
+    width: 100%;
+    padding: 30px;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list li {
+    display: inline;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: #ffcc00;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgb(0, 187, 255), rgba(0, 0, 0, 0.7));
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 20px;
+    border-radius: 12px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+.join:hover {
+    transform: scale(1.02);
+}
+
+/* Hero Content */
+.join-me {
+    max-width: 700px;
+    padding: 20px;
+}
+
+.join-me h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.join-me p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Button Styling */
+.join-me button {
+    background: linear-gradient(135deg, #23a6d5, #1477b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.join-me button a {
+    color: white;
+    text-decoration: none;
+}
+
+.join-me button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);
+}
+.join-me button:focus {
+    outline: none;
+}
+
+
+/* Footer Section Styling */
+.footer {
+    background: #1e1e1e;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-social {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.nav-links button{
+    background: linear-gradient(135deg, #23a6d5, #1477b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.nav-links button:hover{
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(255, 204, 0, 0.5);
+}
+.nav-links a {
+    margin: 0 10px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-links a:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.copyright {
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: rgba(0, 174, 255, 0.8);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .header-nav.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .daily {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .media {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-logo img {
+        height: 30px;
+    }
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .hero button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .daily {
+        flex-direction: column;
+    }
+
+    .media {
+        flex-direction: column;
+    }
+}
+@media (max-width: 480px) {
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+    }
+
+    .hero button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .daily {
+        flex-direction: column;
+    }
+
+    .media {
+        flex-direction: column;
+    }}  
+
+    </style>
+</head>
+<body>
+<div>
+<!-- Header Section -->
+<header class="header-main">
+    <div class="header-logo">
+        <a href="index.html" aria-label="Global Light Charismatic Chapel">
+            <img src="Glcc logo.jpg" alt="GLCC Logo">
+            <span class="logo-text">Global Light Charismatic Chapel</span>
+        </a>
+    </div>
+
+    <!-- Navigation Menu -->
+        <!-- Navigation Menu -->
+    <nav class="header-nav">
+        <div class="nav-list">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='events.html'">Events</button>
+            <button onclick="location.href='contact.html'">Contact</button>
+        </div>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+
+    <div class="header-social">
+        <a href="https://web.facebook.com/GlobalLightCharismaticChapel" title="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="24" height="24">
+        </a>
+        <a href="#" title="YouTube">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" width="24" height="24">
+        </a>
+        <a href="#" title="TikTok">
+            <img src="/images/vecteezy_tiktok-logo-png-tikok-icon-transparent-png-tikok-app-logo-png_18930573.png" alt="TikTok" width="24" height="24">
+        </a>
+    </div>
+</header>
+<div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+        <img src="Glcc logo.jpg" alt="Splash Image">
+    </div>
+</div>
+
+
+
+<!-- Main Content -->
+<main class="main-body">
+    <!-- Hero Section -->
+    <section class="hero">
+        <article>
+            <h2>Welcome to GLCC</h2>
+            <p>Experience the light of God with us through worship, teachings, and a vibrant community 
+                dedicated to spreading His word.</p>
+            <button><a href="about.html">Learn More</a></button>
+        </article>
+    </section>
+    <section>
+        <div class ="event-main">
+            <h2>Upcoming Events</h2>
+            <div class="event-slideshow">
+                <div class="event-slides">
+                    <img src="worship.jpg" alt="worship" class="active">
+                    <img src="Service.jpg" alt="service">
+                    <img src="entering.jpg" alt="entering">
+                </div>
+        </div>
+    </section>
+
+
+    <!-- Daily Verse Section -->
+
+    <div class="daily">
+            <!-- DAILY BIBLE VERSE -->
+    <section class="daily-verse">
+        <h2>Daily Bible Verse</h2>
+        <p id="bible-verse">Loading...</p>
+    </section>
+        <section class="daily-word">
+            <a href="https://www.youtube.com/watch?v=1PQvcko9TNI&t"><h2>Chosen Word</h2>
+            <p><Strong>Our Year Of Fullness</Strong></p>
+            <p>25.08.2024</p></a>
+        </section>
+    </div>
+
+    <!-- ======= MEDIA SECTION ========== -->
+    <!-- Media Section -->
+    <section>
+        <div class="media">
+            <!-- Videos Section -->
+            <div class="media-videos">
+                <section>
+                    <h2>Videos</h2>
+                    <!-- Video Grid -->
+                    <div class="video-grid">
+                        <section class="v-s1"><p><div class="vid-1">     <button>~Take Responsibility~ </button></p>          
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SPEvhLrBzfQ?si=vgmOIbaoRkLUmRIR" title="YouTube video player" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    
+                        <div class="vid-2">    <p><Button>~The Christian Fire~</Button></p>                
+                            <iframe width="300" height="198"  src="https://www.youtube.com/embed/-N-0GB_1NBU?si=7HfmGbz6Wa5xnUYC" title="YouTube video player" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></section>
+
+                        <section class="v-s2">
+                            <div class="vid-3">       <p><button>~The Life Changing Encounter~</button></p>   
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/5joQXWysZk8?si=takzMXUrK6WEhNqn" title="YouTube video player" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        
+                       
+                        <div class="vid-4"> <p><button>~The Secret of Longetivity~</button></p>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/-QEmOcNIeP0?si=EvhhDa2nhkTVGTNT" title="YouTube video player" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Audios Section -->
+        <div class="media-audios">
+            <h2>Now Playing:</h2>
+            <p id="audio-title">Select a track</p>
+        <!-- Audio Player Section -->
+        <section class="audio-container">
+         
+            <audio id="audio-player">
+                <source id="audio-source" src="/Audio/Atmosphere Shift _ Worship Instrumental Music [JxXiKcMpAoM].mp3" type="audio/mpeg">
+                Your browser does not support the audio tag.
+            </audio>
+
+            <!-- Custom Controls -->
+            <div class="audio-controls">
+                <button id="prevTrack">⏮️</button>
+                <button id="playPause">▶️</button>
+                <button id="nextTrack">⏭️</button>
+                <input type="range" id="progressBar" value="0">
+                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+            </div>
+        </section>
+
+        <!-- Playlist Section -->
+        <section class="playlist-container">
+            <h2>🎼 Playlist</h2>
+            <ul id="playlist">
+                <li data-src="/Audio/Atmosphere Shift _ Worship Instrumental Music [JxXiKcMpAoM].mp3">Atmosphere Shift</li>
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+                <li data-src="audio/song3.mp3">Song 3 - Gospel Vibes</li>
+                
+                <li data-src="https://t.me/PastorStephenOBadu/1163">Song 2 - Praise</li>
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+            
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+                <li data-src="audio/song2.mp3">Song 2 - Praise</li>
+    
+
+            </ul>
+        </section>
+
+        <!-- Upload Audio (Only for Admins) -->
+        <section class="upload-container" id="upload-section" style="display: none;">
+            <h2>🎧 Upload Your Audio</h2>
+            <input type="file" id="audio-upload" accept="audio/*">
+        </section>
+    </div>
+    </section>
+</section>
+
+        <!--========= Slideshow Section ===== -->
+<section class="Image-main"><p>Moments</p>
+<div class="media-image">
+    <section class="slideshow-container">
+        <div class="slides">
+            <img src="1.jpg" alt="Image 1">
+            <img src="2.jpg" alt="Image 2">
+            <img src="3.jpg" alt="Image 3">
+            <img src="4.jpg" alt="Image 4">
+            <img src="5.jpg" alt="Image 5">
+            <img src="6.jpg" alt="Image 6">
+            <img src="7.jpg" alt="Image 7">
+            <img src="8.jpg" alt="Image 8">
+            <img src="9.jpg" alt="Image 9">
+            <img src="10.jpg" alt="Image 10">
+            <img src="11.jpg" alt="Image 11">
+            <img src="12.jpg" alt="Image 12">
+            <img src="13.jpg" alt="Image 13">
+            <img src="14.jpg" alt="Image 14">
+            <img src="15.jpg" alt="Image 15">
+            <img src="16.jpg" alt="Image 16">
+            <img src="17.jpg" alt="Image 17">
+            <img src="18.jpg" alt="Image 18">
+            <img src="19.jpg" alt="Image 19">
+            <img src="20.jpg" alt="Image 20">
+            <img src="21.jpg" alt="Image 21">
+            <img src="22.jpg" alt="Image 22">
+            <img src="23.jpg" alt="Image 23">
+            <img src="24.jpg" alt="Image 24">
+            <img src="25.jpg" alt="Image 25">
+            <img src="26.jpg" alt="Image 26">
+            <img src="27.jpg" alt="Image 27">
+            <img src="28.jpg" alt="Image 28">
+            <img src="29.jpg" alt="Image 29">
+            <img src="30.jpg" alt="Image 30">
+            <img src="31.jpg" alt="Image 31">
+            <img src="32.jpg" alt="Image 32">
+            <img src="33.jpg" alt="Image 33">
+            <img src="34.jpg" alt="Image 34">
+            <img src="35.jpg" alt="Image 35">
+            <img src="36.jpg" alt="Image 36">
+            <img src="37.jpg" alt="Image 37">
+            <img src="38.jpg" alt="Image 38">
+            <img src="39.jpg" alt="Image 39">
+            <img src="40.jpg" alt="Image 40">
+        </div>
+
+
+        <!-- Image Thumbnails -->
+      <!-- Thumbnail Slideshow Container -->
+<div class="thumbnail-container">
+    <div class="thumbnail-controls">
+        <button id="thumb-prev">&#10094;</button>
+        <button id="thumb-next">&#10095;</button>
+    </div>
+    <div class="thumbnails">
+        <img class="thumb" src="1.jpg" data-index="1">
+        <img class="thumb" src="2.jpg" data-index="2">
+        <img class="thumb" src="3.jpg" data-index="3">
+        <img class="thumb" src="4.jpg" data-index="4">
+        <img class="thumb" src="5.jpg" data-index="5">
+        <img class="thumb" src="6.jpg" data-index="6">
+        <img class="thumb" src="7.jpg" data-index="7">
+        <img class="thumb" src="8.jpg" data-index="8">
+        <img class="thumb" src="9.jpg" data-index="9">
+        <img class="thumb" src="10.jpg" data-index="10">
+        <img class="thumb" src="11.jpg" data-index="11">
+        <img class="thumb" src="12.jpg" data-index="12">
+        <img class="thumb" src="13.jpg" data-index="13">
+        <img class="thumb" src="14.jpg" data-index="14">
+        <img class="thumb" src="15.jpg" data-index="15">
+        <img class="thumb" src="16.jpg" data-index="16">
+        <img class="thumb" src="17.jpg" data-index="17">
+        <img class="thumb" src="18.jpg" data-index="18">
+        <img class="thumb" src="19.jpg" data-index="19">
+        <img class="thumb" src="20.jpg" data-index="20">
+        <img class="thumb" src="21.jpg" data-index="21">
+        <img class="thumb" src="22.jpg" data-index="22">
+        <img class="thumb" src="23.jpg" data-index="23">
+        <img class="thumb" src="24.jpg" data-index="24">
+        <img class="thumb" src="25.jpg" data-index="25">
+        <img class="thumb" src="26.jpg" data-index="26">
+        <img class="thumb" src="27.jpg" data-index="27">
+        <img class="thumb" src="28.jpg" data-index="28">
+        <img class="thumb" src="29.jpg" data-index="29">
+        <img class="thumb" src="30.jpg" data-index="30">
+        <img class="thumb" src="31.jpg" data-index="31">
+        <img class="thumb" src="32.jpg" data-index="32">
+        <img class="thumb" src="33.jpg" data-index="33">
+        <img class="thumb" src="34.jpg" data-index="34">
+        <img class="thumb" src="35.jpg" data-index="35">
+        <img class="thumb" src="36.jpg" data-index="36">
+        <img class="thumb" src="37.jpg" data-index="37">
+        <img class="thumb" src="38.jpg" data-index="38">
+        <img class="thumb" src="39.jpg" data-index="39">
+        <img class="thumb" src="40.jpg" data-index="40">
+    </div>
+
+      <!-- Lightbox Container -->
+    <div id="lightbox" class="lightbox">
+        <span id="close-lightbox">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+    </div>
+</div>
+</div>
+</section>
+
+
+        <!-- ====== LOCATION & CONTACT SECTION ====== -->
+
+<section>
+    <div class="find">
+        <!--Location-->
+        <section class="maps">            <h2>Locate Us</h2>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.121843172029!2d-1.6823256532618893!3d6.2315721052147355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdc65950a49cec9%3A0x52897a0cbff490f9!2sGLCC%20AUDITORIUM!5e0!3m2!1sen!2sgh!4v38049046954!5m2!1sen!2sgh" 
+                width="450" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+
+        <!--Contacts-->
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <div class="contact-links">
+                <!-- Email Contact -->
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@globallightchapel.org">info@globallightchapel.org</a></p>
+                </div>
+        
+                <!-- Phone Contact -->
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p><a href="tel:+233598628544">(+233) 059-8628-544</a></p>
+                </div>
+        
+                <!-- WhatsApp Contact -->
+                <div class="contact-item">
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/233598628544" target="_blank">Chat with us on WhatsApp</a></p>
+                </div>
+        
+                <!-- Social Media Links -->
+                <div class="contact-item">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="https://web.facebook.com/GlobalLightCharismaticChapel" target="_blank">Facebook</a> |
+                        <a href="https://www.youtube.com/" target="_blank">YouTube</a> |
+                        <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+   
+    <section class="form-main">
+    <!-- Input Form Section -->
+    <section class="form-container">
+        <h2>Share Your Testimony</h2>
+        <form id="slide-form">
+            <div class="form-group">
+                <label for="slide-image">Name</label>
+                <input type="text" id="slide-image" placeholder=" Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="slide-caption">Message</label>
+                <input type="text" id="slide-caption" placeholder="Testify here" required>
+            </div>
+
+            <button type="submit">Testify</button>
+        </form>
+    </section>
+
+     <!-- Slideshow Section -->
+    <section class="slideshow-section">
+        <h2>Testimonies</h2>
+        <div class="slideshow-container">
+            <div class="slides-wrapper" id="slides-wrapper">
+                <!-- Slides will be dynamically added here -->
+            </div>
+            <div class="controls">
+                <button id="prev" aria-label="Previous Slide">&#10094;</button>
+                <button id="next" aria-label="Next Slide">&#10095;</button>
+            </div>
+        </div>
+    </section>
+</section>
+</section>
+    </section>
+
+ 
+
+
+      <!--Join us-->
+      <div><section class="join">
+        <article class="join-me">
+            <h2>Join Us today!</h2>
+            <p>Global Light Charismatic Chapel is a Pente-Charismatic movement. 
+                Thus, we believe in manifestions of the Holy Spirit and liberation through Christ </p>
+            <button><a href="https://docs.google.com/forms/d/e/1FAIpQLSe7IHInGHJiuOtC6An7Rkp91xI4KUgD9eALOdJsnrpdQmacqQ/viewform?usp=sharing">
+                Join Us</a></button>
+        </article>
+    </section></div>
+
+   
+    <div ><section class="footer-nav">
+        <ul class="nav-links">
+           <button> <li><a href="index.html">Home</a></li></button>
+            <button><li><a href="/html/events.html">Event</a></li></button>
+            <button><li><a href="">Contact</a></li></button>
+        </ul> 
+    </div>
+</main>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-copyright">
+        <div class="footer-social">
+            <nav class="nav-links">
+                <div class="header-social">
+                    <a href="https://web.facebook.com/GlobalLightCharismaticChapel" title="Facebook">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="24" height="24">
+                    </a>
+                    <a href="#" title="YouTube">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" width="24" height="24">
+                    </a>
+                    <a href="#" title="TikTok">
+                        <img src="vecteezy_tiktok-logo-png-tikok-icon-transparent-png-tikok-app-logo-png_18930573.png" alt="TikTok" width="24" height="24">
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="copyright">&copy; 2025 Global Light Charismatic Chapel (GLCC)
+        </div> 
+ 
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  // Get the splash screen element
+  const splashScreen = document.querySelector(".splash-screen");
+
+  // Function to remove splash screen after delay
+  setTimeout(() => {
+      splashScreen.style.opacity = "0"; // Fade out effect
+      splashScreen.style.transition = "opacity 1.5s ease-in-out";
+
+      // Completely remove it after transition
+      setTimeout(() => {
+          splashScreen.style.display = "none";
+      }, 1500);
+  }, 1000); // 3 seconds before fade-out starts
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const headerNav = document.querySelector(".header-nav");
+
+    menuToggle.addEventListener("click", () => {
+        headerNav.classList.toggle("active");
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let slides = document.querySelectorAll(".slides img");
+    let thumbnails = document.querySelectorAll(".thumb");
+    let currentSlide = 0;
+    let autoPlay = setInterval(nextSlide, 5000); // Auto-play every 5s
+
+    function showSlide(index) {
+        // Remove 'active' class from all images and thumbnails
+        slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+        thumbnails.forEach((thumb, i) => thumb.classList.toggle("selected", i === index));
+
+        // Auto-scroll thumbnails if needed
+        let thumbnailContainer = document.querySelector(".thumbnails");
+        let activeThumb = thumbnails[index];
+
+        if (activeThumb) {
+            let scrollOffset = activeThumb.offsetLeft - thumbnailContainer.offsetWidth / 2 + activeThumb.offsetWidth / 2;
+            thumbnailContainer.scrollTo({ left: scrollOffset, behavior: "smooth" });
+        }
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Sync Thumbnail Clicks with Main Slideshow
+    thumbnails.forEach((thumb, i) => {
+        thumb.addEventListener("click", () => {
+            currentSlide = i;
+            showSlide(i);
+            resetAutoPlay();
+        });
+    });
+
+    // Keyboard Navigation
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+        if (e.key === "Escape") closeLightbox();
+    });
+
+    // Prevent Slideshow from Affecting Page Scrolling
+    document.querySelector(".slideshow-container").addEventListener("wheel", (e) => {
+        e.stopPropagation(); // Prevent scroll hijacking
+    });
+
+    // Pause Auto-Play on Hover
+    document.querySelector(".slideshow-container").addEventListener("mouseenter", () => {
+        clearInterval(autoPlay);
+    });
+
+    document.querySelector(".slideshow-container").addEventListener("mouseleave", resetAutoPlay);
+
+    function resetAutoPlay() {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(nextSlide, 5000);
+    }
+
+        // Bible Verse API Fetch
+        fetch("https://bible-api.com/john+3:16")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("bible-verse").innerText = `${data.text} ~ ${data.reference}`;
+        })
+        .catch(error => console.error("Error fetching verse:", error));
+
+
+    // Lightbox Feature
+    document.querySelectorAll(".slides img").forEach((img) => {
+        img.addEventListener("click", () => {
+            document.querySelector(".lightbox").style.display = "flex";
+            document.querySelector(".lightbox-content").src = img.src;
+        });
+    });
+
+    function closeLightbox() {
+        document.querySelector(".lightbox").style.display = "none";
+    }
+
+    document.getElementById("close-lightbox").addEventListener("click", closeLightbox);
+
+    // Initialize first slide
+    showSlide(currentSlide);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".event-slides img");
+    let currentSlide = 0;
+    const slideInterval = 5000; // Auto-play interval in milliseconds
+
+    // Function to show the current slide
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+    }
+
+    // Function to go to the next slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Auto-play functionality
+    setInterval(nextSlide, slideInterval);
+
+    // Initialize the first slide
+    showSlide(currentSlide);
+});
+
+
+  // Testimony Submission and Display
+  const testimonyForm = document.getElementById("slide-form");
+  const slidesWrapper = document.getElementById("slides-wrapper");
+
+  testimonyForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("slide-image").value;
+      const message = document.getElementById("slide-caption").value;
+
+      const testimonyDiv = document.createElement("div");
+      testimonyDiv.classList.add("slide");
+      testimonyDiv.innerHTML = `<p><strong>${name}</strong>: ${message}</p>`;
+
+      slidesWrapper.appendChild(testimonyDiv);
+
+      testimonyForm.reset();
+
+       // Slide Navigation
+       function updateSlidePosition() {
+        const slides = document.querySelectorAll(".slide");
+        slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    nextButton.addEventListener("click", () => {
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlidePosition();
+    });
+
+    prevButton.addEventListener("click", () => {
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlidePosition();
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+    const testimonySlides = document.querySelector(".testimony-slides");
+    const prevTestimony = document.getElementById("prevTestimony");
+    const nextTestimony = document.getElementById("nextTestimony");
+    let currentTestimonyIndex = 0;
+
+    // Function to show the current testimony
+    function showTestimony(index) {
+        const testimonies = document.querySelectorAll(".testimony-slides .testimony");
+        if (testimonies.length === 0) return;
+
+        // Ensure index is within bounds
+        currentTestimonyIndex = (index + testimonies.length) % testimonies.length;
+
+        // Update slide position
+        testimonySlides.style.transform = `translateX(-${currentTestimonyIndex * 100}%)`;
+    }
+
+    // Event listeners for navigation buttons
+    prevTestimony.addEventListener("click", () => {
+        showTestimony(currentTestimonyIndex - 1);
+    });
+
+    nextTestimony.addEventListener("click", () => {
+        showTestimony(currentTestimonyIndex + 1);
+    });
+
+    // Add a new testimony dynamically
+    const testimonyForm = document.getElementById("slide-form");
+    testimonyForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("slide-image").value;
+        const message = document.getElementById("slide-caption").value;
+
+        const testimonyDiv = document.createElement("div");
+        testimonyDiv.classList.add("testimony");
+        testimonyDiv.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+
+        testimonySlides.appendChild(testimonyDiv);
+
+        // Reset form and update slideshow
+        testimonyForm.reset();
+        showTestimony(currentTestimonyIndex);
+    });
+
+    // Initialize the first testimony
+    showTestimony(currentTestimonyIndex);
+});
+
+     // Bible Verse API Fetch
+     fetch("https://bible-api.com/")
+     .then(response => response.json())
+     .then(data => {
+         document.getElementById("bible-verse").innerText = `"${data.text}" - ${data.reference}`;
+     })
+     .catch(error => console.error("Error fetching verse:", error));
+ 
+     // Slideshow Functionality
+     let slideIndex = 0;
+     const slides = document.querySelectorAll(".slides img");
+ 
+     function showSlides() {
+         slides.forEach((slide, index) => {
+             slide.style.display = "none";
+         });
+         slideIndex++;
+         if (slideIndex >= slides.length) slideIndex = 0;
+         slides[slideIndex].style.display = "block";
+         setTimeout(showSlides, 4000);
+     }
+     showSlides();
+ 
+     // Lazy Load Videos
+     const lazyVideos = document.querySelectorAll(".lazy-video");
+     lazyVideos.forEach(video => {
+         video.src = video.getAttribute("data-src");
+     });
+ 
+     // Dark Mode Toggle
+     const darkModeToggle = document.getElementById("darkModeToggle");
+     darkModeToggle.addEventListener("click", () => {
+         document.body.classList.toggle("dark-mode");
+     });
+ 
+     // Mobile Menu Toggle
+     const menuToggle = document.querySelector(".menu-toggle");
+     const navMenu = document.querySelector(".header-nav");
+     menuToggle.addEventListener("click", () => {
+         navMenu.classList.toggle("active");
+     });
+  });
+</script>
+</body>
+</html>
